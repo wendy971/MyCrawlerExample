@@ -36,9 +36,15 @@ public class pttExample {
 			    //.getFromXml(uri)
 			    
 			    // 這兒開始是 Jsoup Document 物件操作
-						.select("span.hl.push-tag")
+						.select("div.push>span.hl.push-tag , div.push>span.f3.push-content")
 
 
 		);
 	}
 }
+/*<div class="push">
+<span class="hl push-tag">推 </span>
+<span class="f3 hl push-userid">gginin007</span>
+<span class="f3 push-content">: 不要扶他</span>
+<span class="push-ipdatetime"> 04/09 10:18 </span>
+</div>*/

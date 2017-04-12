@@ -24,9 +24,9 @@ public class FacebookExam {
 		// 遠端資料路徑
 
 		String uri = 
-				"https://graph.facebook.com/v2.6"
-				+ "/search?q="
-				+ "&access_token=";
+				"https://graph.facebook.com/v2.8"
+				+ "/s3beauty/feed?fields=id,link,message,created_time,likes.limit(0).summary(total_count),reactions.limit(0).summary(total_count)"
+				+ "&access_token=228215314323382%7Cuf2dRNRFmZ-DfG5_Ui9vyJ-TKY8";
 
 
 		Elements elems =
@@ -34,19 +34,20 @@ public class FacebookExam {
 				.getFromJson(uri)
 				.select("data");
 		
-		String output = "id,reactions";
+		String output = "id,連結,內容,創建時間,按讚數,總情緒數\n";
 
 		// 遂筆處理
 		for( Element data: elems ){
 			String id = data.select("id").text();
+			String link = data.select("link").text();
+			String message = data.select("message").text();
+			String created_time = data.select("created_time").text();
+			String likes = data.select("likes").text();
+			String reactions = data.select("reactions").text();
 
-			// FIXIT
-			String reactions = "";
-
-
-			output += id + "," + reactions + "\n";
+			output += id+",\""+link+"\","+message+","+created_time+","+likes+","+reactions+"\n";
 		}
 
 		System.out.println( output );
-	} 
+	}
 }
